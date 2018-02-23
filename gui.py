@@ -2,16 +2,18 @@ import tkinter
 from tkinter import filedialog
 import csvtojira
 
-def openFileDialog():
-    return filedialog.askopenfilename(filetypes = (("CSV Files", "*.csv"), ("Text Files", "*.txt")))
+def loadCSVTextToGUI(textArea):
+    filePath = filedialog.askopenfilename(filetypes = (("CSV Files", "*.csv"), ("Text Files", "*.txt")))
+    textArea.insert('1.0',  csvtojira.convertCSVToString(filePath))
 
 def activateConvertButton(button):
     button.config(state="normal")
     
-def activateConvertAndFileDialog(button):
-    activateConvertButton(button)
-    return openFileDialog()
+def activateConvertAndFileDialog(button,  textArea):
+    activateConvertButton(button,)
+    print(loadCSVTextToGUI(textArea))
 
+    
 def createGUI():
     window = tkinter.Tk()
     window.title("CSV To Jira")
@@ -29,7 +31,7 @@ def createGUI():
     #Creates two radio buttons for options on what to convert from.
     textEnteredRadio = tkinter.Radiobutton(window, text="Text Entered Below", variable=conversionFrom, value="Text", command=lambda: activateConvertButton(convertButton))
     textEnteredRadio.grid(row=0,  column=1)
-    csvFileRadio = tkinter.Radiobutton(window, text="CSV File", variable=conversionFrom, value="File", command=lambda: activateConvertAndFileDialog(convertButton))
+    csvFileRadio = tkinter.Radiobutton(window, text="CSV File", variable=conversionFrom, value="File", command=lambda: activateConvertAndFileDialog(convertButton,  textArea))
     csvFileRadio.grid(row=0,  column=2)
 
 

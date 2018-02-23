@@ -55,8 +55,9 @@ def convertCSVToString(filePath):
         outputString = ""
         for row in reader:
             outputString = outputString + str(row) + "\n"
-        return outputString.replace("[",  "").replace("]",  "")
+        return outputString.replace("[",  "").replace("]",  "").replace("'",  "")
 
+'''
 print(convertCSVToString("test.csv"))
 print("*********************************************************************")
 print("Converting CSV File to Jira Table")
@@ -65,3 +66,4 @@ print("*********************************************************************")
 print("Converting CSV String to Jira Table")
 print(convertCSVStringToJira("letter,food,healthy\na,apple,Y\nb,banana,Y\nc,chocolate,N\nd,dried fruit,Y",  True))
 print("Conversions completed!")
+'''

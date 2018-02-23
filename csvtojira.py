@@ -25,7 +25,7 @@ def convertCSVStringToJira(CSVString,  outputToFile):
             convertedString = convertedString + convertStringToJiraRow(line)
     if(outputToFile):
         outputToTextFile(convertedString)
-    print(convertedString)
+    return convertedString
     
 '''
 Possibly unneeded?
@@ -47,7 +47,7 @@ def convertCSVFileToJira(filePath,  outputToFile):
                 convertedString = convertedString + convertStringToJiraRow(originalString)
         if(outputToFile):
             outputToTextFile(convertedString)
-        print(convertedString)
+        return convertedString
         
 def convertCSVToString(filePath):
     with open(filePath, 'r') as csvfile:
@@ -60,8 +60,8 @@ def convertCSVToString(filePath):
 print(convertCSVToString("test.csv"))
 print("*********************************************************************")
 print("Converting CSV File to Jira Table")
-convertCSVFileToJira("test.csv",  True)
+print(convertCSVFileToJira("test.csv",  True))
 print("*********************************************************************")
 print("Converting CSV String to Jira Table")
-convertCSVStringToJira("letter,food,healthy\na,apple,Y\nb,banana,Y\nc,chocolate,N\nd,dried fruit,Y",  True)
+print(convertCSVStringToJira("letter,food,healthy\na,apple,Y\nb,banana,Y\nc,chocolate,N\nd,dried fruit,Y",  True))
 print("Conversions completed!")

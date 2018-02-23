@@ -12,6 +12,12 @@ def activateConvertButton(button):
 def activateConvertAndFileDialog(button,  textArea):
     activateConvertButton(button,)
     print(loadCSVTextToGUI(textArea))
+    
+def convertTextToJira(textArea):
+    textToConvert = textArea.get("1.0",'end-1c')
+    convertedText = csvtojira.convertCSVStringToJira(textToConvert,  False)
+    textArea.delete('1.0',  'end-1c')
+    textArea.insert('1.0',  convertedText)
 
     
 def createGUI():
@@ -20,7 +26,7 @@ def createGUI():
 
     #The button which when pressed converts text.
     #Set to a disabled state to ensure an option is selected by the radio buttons.
-    convertButton = tkinter.Button(window,  text="Convert",  state="disabled")
+    convertButton = tkinter.Button(window,  text="Convert",  state="disabled",  command=lambda: convertTextToJira(textArea))
     convertButton.grid(row=2,  column=2)
     
 
